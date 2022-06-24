@@ -1,0 +1,15 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+.penis {
+    position: absolute;
+    z-index: 999;
+    width: 24px;
+    height: 33px;
+    left: calc(50% + 6px);
+    bottom: 0;
+    background: url("penis.png") no-repeat no-repeat;
+    background-size: contain;
+    /*transform: rotate();*/
+}
