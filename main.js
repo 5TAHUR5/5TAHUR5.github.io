@@ -20,34 +20,50 @@ window.addEventListener("mousedown", (e) => draw = true)
 // Set draw to false when mouse is released
 window.addEventListener("mouseup", (e) => draw = false)
 
-window.addEventListener("touchstart", (e) => draw = true)
+window.addEventListener("touchstart", (e) => {
+    prevX = Math.round(e.clientX)
+    prevY = Math.round(e.clientY)
+    draw = true
+})
 
-window.addEventListener("touchend", (e) => draw = false)
+window.addEventListener("touchend", (e) => {
+    draw = false
+})
+
 
 window.addEventListener("touchmove", (e) => {
+    drawFun(e.changedTouches[0])})
 
+window.addEventListener("mousemove", ev => {
+    drawFun(ev)
+})
+
+
+
+const drawFun = (e) => {
     const distX = e.clientX - (canvas.width / 2)
     const distY = e.clientY - (canvas.height / 2)
 
     if (distX > 0) {
-
         penis.style.transform = `rotate(${Math.acos( distY / Math.sqrt(distX*distX + distY*distY))}rad)`
     }
     if (distX < 0) {
         penis.style.transform = `rotate(-${Math.acos( distY / Math.sqrt(distX*distX + distY*distY))}rad)`
     }
-
     // if draw is false then we won't draw
-    if(prevX == null || prevY == null || !draw){
-        prevX = e.clientX
-        prevY = e.clientY
+    if((prevX == null || prevY == null || !draw)){
+        prevX = Math.round(e.clientX)
+        prevY = Math.round(e.clientY)
         return
     }
 
-    let currentX = e.clientX
-    let currentY = e.clientY
+
+    let currentX = Math.round(e.clientX)
+    let currentY = Math.round(e.clientY)
 
 
+    console.log("Prev: x: " + prevX + " y: " + prevY)
+    console.log("Current: x: " + currentX + " y: " + currentY)
     ctx.beginPath()
     ctx.moveTo(prevX, prevY)
     ctx.lineTo(currentX, currentY)
@@ -55,37 +71,6 @@ window.addEventListener("touchmove", (e) => {
 
     prevX = currentX
     prevY = currentY
-})
-
-window.addEventListener("mousemove", (e) => {
-
-    const distX = e.clientX - (canvas.width / 2)
-    const distY = e.clientY - (canvas.height / 2)
-
-    if (distX > 0) {
-
-        penis.style.transform = `rotate(${Math.acos( distY / Math.sqrt(distX*distX + distY*distY))}rad)`
-    }
-    if (distX < 0) {
-        penis.style.transform = `rotate(-${Math.acos( distY / Math.sqrt(distX*distX + distY*distY))}rad)`
-    }
-
-    // if draw is false then we won't draw
-    if(prevX == null || prevY == null || !draw){
-        prevX = e.clientX
-        prevY = e.clientY
-        return
-    }
-
-    let currentX = e.clientX
-    let currentY = e.clientY
 
 
-    ctx.beginPath()
-    ctx.moveTo(prevX, prevY)
-    ctx.lineTo(currentX, currentY)
-    ctx.stroke()
-
-    prevX = currentX
-    prevY = currentY
-})
+}
