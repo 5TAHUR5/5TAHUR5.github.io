@@ -2,7 +2,9 @@ alert('Добро пожаловать в симулятор "Сать на сн
 
 const canvas = document.getElementById("canvas")
 const penis = document.getElementById("penis")
-
+const audio = new Audio("sound.mp3")
+audio.volume = 1
+audio.play()
 canvas.height = window.innerHeight
 canvas.width = window.innerWidth
 
@@ -62,8 +64,6 @@ const drawFun = (e) => {
     let currentY = Math.round(e.clientY)
 
 
-    console.log("Prev: x: " + prevX + " y: " + prevY)
-    console.log("Current: x: " + currentX + " y: " + currentY)
     ctx.beginPath()
     ctx.moveTo(prevX, prevY)
     ctx.lineTo(currentX, currentY)
