@@ -2,9 +2,7 @@ alert('Добро пожаловать в симулятор "Сать на сн
 
 const canvas = document.getElementById("canvas")
 const penis = document.getElementById("penis")
-const audio = new Audio("sound.mp3")
-audio.volume = 1
-audio.play().then(r => console.log(r))
+
 canvas.height = window.innerHeight
 canvas.width = window.innerWidth
 
