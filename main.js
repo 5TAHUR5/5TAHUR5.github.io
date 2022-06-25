@@ -1,11 +1,10 @@
-alert('Добро пожаловать в симулятор "Сать на снегу" онлайн без смс и регистрации')
-
+const hWrapper = document.getElementById("hWrapper")
+const audio = document.getElementById("audio")
 const canvas = document.getElementById("canvas")
 const penis = document.getElementById("penis")
-
 canvas.height = window.innerHeight
 canvas.width = window.innerWidth
-
+//audio.style = "width: 84px;"
 const ctx = canvas.getContext("2d")
 ctx.strokeStyle = "#fdec03"
 let prevX = null
@@ -14,9 +13,16 @@ let prevY = null
 ctx.lineWidth = 5
 
 let draw = false
+let start = false
+
+audio.onplay = () => {
+    start = true
+
+    hWrapper.style = "display: none;"
+}
 
 // Set draw to true when mouse is pressed
-window.addEventListener("mousedown", (e) => draw = true)
+window.addEventListener("mousedown", (e) => {if (start) {draw = true}})
 // Set draw to false when mouse is released
 window.addEventListener("mouseup", (e) => draw = false)
 
