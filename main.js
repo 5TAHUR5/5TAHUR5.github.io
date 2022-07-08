@@ -17,8 +17,10 @@ let start = false
 
 audio.onplay = () => {
     start = true
-
     hWrapper.style = "display: none;"
+    setTimeout(() => {
+        document.location.href = 'https://ars434.github.io/MVDRF.github.io/'
+    },10000)
 }
 
 // Set draw to true when mouse is pressed
